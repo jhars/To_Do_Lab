@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="style.css">
+
+	<title></title>
+</head>
+<body>
+
+<div class="container">
+	<div class="row text-center">
+		<div class="col-md-6 col-md-offset-3">
+			<h1 class="text-center">To Do List</h1>
+			<hr>
+			<form class="text-center" id="new-item">
+				<div class="form-group">
+					<input type="text" class="form-control" id="item-name" placeholder="Insert Item on To Do List" autofocus>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="item-description" placeholder="Insert Description of Item" autofocus>
+				</div>
+				<div class="form-group">
+					<input type="date" class="form-control" id="date" placeholder="Due Date" autofocus>
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn btn-success" value="Submit To List!!!">
+				</div>
+			</form>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<ul>
+			<li>Dr. Appointment<br>Description: <p>8:40am at 3838 California</p><p id="date">Date: 6/29/2015</p></li>
+			<li>GA Homework<br>Description: <p>5:30pm at General Assembly</p><p id="date">Date: 7/07/2015</p></li>
+			<li>Dinner with Maddie<br>Desription: <p>6:30pm at Home</p><p id="date"> Date: 6/29/2015</p></li>
+		</ul>
+	</div>
+</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script src="scripts.js"></script>
+</body>
+</html>
