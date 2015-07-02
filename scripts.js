@@ -1,17 +1,60 @@
 $(function(){
 
 //--------------------- VARIABLES--------------//
-var $newItem = $('#new-item');
-// $newItem.submit(function(){
+// var $toDoList = $('ul');
+// var $listItems = $('li');
 var $itemName = $('#item-name');
-var $toDoList = $('ul');
-var $listItems = $('li');
+var $description = $('#item-info');
+var $date = $('#item-date');
 
-var $description = $('#item-description');
-var $date = $('#date');
-
+//---------------------------------------------//
 
 
+var $toDoList = $('#to-do-list');
+var $newItem = $('#new-item');
+
+
+var myTasks = [
+{task:"Dr. Appointment",taskInfo:"new doctor 3838 California",date:"07/07/2015"},
+{task:"Homework",taskInfo:"General Assembly Lab",date:"07/04/2015"},
+{task:"Dinner",taskInfo:"with Maddie",date:"07/08/2015"}
+];
+
+var toDoTemplate = _.template($('#to-do-template').html());
+
+_.each(myTasks, function (myTasks, index){
+	var $myTasks = $(toDoTemplate(myTasks));
+	$toDoList.append($myTasks);
+});
+
+
+
+
+
+//---------------- SUBMIT FORM BUTTON ---------------------//
+
+$newItem.on('submit', function(event){
+	event.preventDefault();
+	var newTask = $('#item-name').val();
+	var newTaskInfo = $('#item-info').val();
+	var newTask_Date = $('#item-date').val();
+
+	var newTaskData = {task: newTask,taskInfo: newTaskInfo,date: newTask_Date};
+
+	myTasks.push(newTaskData);
+	console.log(myTasks);
+
+	var index = myTasks.indexOf(newTaskData);
+	var $todo = $(toDoTemplate(newTaskData));
+	$toDoList.append($todo);
+
+
+// ------------------reset the form-----------//
+
+  //   $newToDo[0].reset();
+  //   $('#todo-name').focus()
+
+	$('.form-control').clearForm();
 
 //----------------STRIKE-THRU------------------//
 
@@ -21,18 +64,7 @@ var $date = $('#date');
 		$(this).fadeOut('slow');
 		});
 
-
-//---------------- SUBMIT FORM BUTTON ---------------------//
-
-$newItem.on('submit', function(event){
-	event.preventDefault();
-	console.log($itemName.val());
-
-	$toDoList.append('<li>' + $itemName.val() + '<br> Description: <p>' + $description.val()
-	 + '</p><p>Date: ' +$date.val() + '</p></li>');
-	$('.form-control').clearForm();
-
-
+//--------------------Date = RED---------------//
 
 	var start = new Date($date.val()),
 	end   = new Date(),
@@ -44,11 +76,7 @@ $newItem.on('submit', function(event){
 	};
 
 
-
 	});
-
-// if DUE-DATE - TODAY's DATE <= 3 Days 
-//>> turn entire item RED
 
 
 
@@ -70,6 +98,9 @@ $newItem.on('submit', function(event){
 
 
 // --------------------- CLEAR FORM -----------------------//
+
+// reset--------------//
+
 $.fn.clearForm = function() {
   return this.each(function() {
     var type = this.type, tag = this.tagName.toLowerCase();
